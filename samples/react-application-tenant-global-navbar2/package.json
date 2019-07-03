@@ -1,5 +1,5 @@
 {
-  "name": "spfx-tenant-global-navbar",
+  "name": "global-navigation",
   "version": "0.0.1",
   "private": true,
   "engines": {
@@ -16,9 +16,14 @@
     "@microsoft/sp-core-library": "1.8.2",
     "@microsoft/sp-dialog": "1.8.2",
     "@microsoft/sp-office-ui-fabric-core": "^1.8.2",
+    "@pnp/common": "^1.3.3",
+    "@pnp/logging": "^1.3.3",
+    "@pnp/odata": "^1.3.3",
+    "@pnp/sp": "^1.3.3",
+    "@pnp/sp-clientsvc": "^1.3.3",
+    "@pnp/sp-taxonomy": "^1.3.3",
     "@types/es6-promise": "0.0.33",
-    "@types/webpack-env": "1.13.1",
-    "sp-pnp-js": "^3.0.1"
+    "@types/webpack-env": "1.13.1"
   },
   "devDependencies": {
     "@microsoft/sp-build-web": "1.8.2",

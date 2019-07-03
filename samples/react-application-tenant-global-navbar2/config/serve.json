@@ -1,0 +1,29 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://koenzomers.sharepoint.com/teams/Hub/SitePages/Test.aspx",
+      "customActions": {
+        "33ebce34-5b96-4e6e-b470-5eaea3b7e070": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "TopMenuTermSet": "TenantGlobalNavBar"
+          }
+        }
+      }
+    },
+    "globalNavigation": {
+      "pageUrl": "https://contoso.sharepoint.com/sites/mySite/SitePages/myPage.aspx",
+      "customActions": {
+        "33ebce34-5b96-4e6e-b470-5eaea3b7e070": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "testMessage": "Test message"
+          }
+        }
+      }
+    }
+  }
+}
