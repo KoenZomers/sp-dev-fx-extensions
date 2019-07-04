@@ -1,5 +1,5 @@
-import * as SPTermStore from './../services/SPTermStoreService'; 
+import IMenuItem from './IMenuItem';
 
 export interface ITenantGlobalFooterBarProps {
-    menuItems: SPTermStore.ISPTermObject[];
+    menuItems: IMenuItem[];
 }

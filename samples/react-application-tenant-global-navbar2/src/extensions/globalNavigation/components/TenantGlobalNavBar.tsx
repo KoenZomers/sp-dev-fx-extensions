@@ -6,23 +6,19 @@ import { ITenantGlobalNavBarState } from './ITenantGlobalNavBarState';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItem, ContextualMenuItemType } from 'office-ui-fabric-react/lib/ContextualMenu';
 
-import * as SPTermStore from './../services/SPTermStoreService'; 
+import IMenuItem from './IMenuItem';
 
 export default class TenantGlobalNavBar extends React.Component<ITenantGlobalNavBarProps, ITenantGlobalNavBarState> {
 
-  private projectMenuItem(menuItem: SPTermStore.ISPTermObject, itemType: ContextualMenuItemType) : IContextualMenuItem {
+  private projectMenuItem(menuItem: IMenuItem, itemType: ContextualMenuItemType) : IContextualMenuItem {
       return({
-        key: menuItem.identity,
-        name: menuItem.name,
+        key: menuItem.title,
+        name: menuItem.title,
         itemType: itemType,
-        iconProps:{ iconName: (menuItem.localCustomProperties.iconName != undefined ? menuItem.localCustomProperties.iconName : null)},
-        href: menuItem.terms.length == 0 ?
-            (menuItem.localCustomProperties["_Sys_Nav_SimpleLinkUrl"] != undefined ?
-                menuItem.localCustomProperties["_Sys_Nav_SimpleLinkUrl"]
-                : null)
-            : null,
-        subMenuProps: menuItem.terms.length > 0 ? 
-            { items : menuItem.terms.map((i) => { return(this.projectMenuItem(i, ContextualMenuItemType.Normal)); }) } 
+        iconProps: null,
+        href: menuItem.url,
+        subMenuProps: menuItem.subItems != undefined && menuItem.subItems.length > 0 ? 
+            { items : menuItem.subItems.map((i) => { return(this.projectMenuItem(i, ContextualMenuItemType.Normal)); }) } 
             : null,
         isSubMenu: itemType != ContextualMenuItemType.Header,
       });

@@ -4,6 +4,6 @@
         Title="GlobalNavigation"
         Location="ClientSideExtension.ApplicationCustomizer"
         ClientSideComponentId="33ebce34-5b96-4e6e-b470-5eaea3b7e070"
-        ClientSideComponentProperties="{&quot;TopMenuTermSet&quot;:&quot;TenantGlobalNavBar&quot;}">
+        ClientSideComponentProperties="{&quot;TopMenuItems&quot;:&quot;[{ &quot;title&quot;: &quot;Heading 1&quot;, &quot;url&quot;: &quot;https://www.microsoft.com&quot;, &quot;subItems&quot;: [{ &quot;title&quot;: &quot;Sub 1.1&quot;, &quot;url&quot;: &quot;https://cnn.com&quot; }, { &quot;title&quot;: &quot;Sub 1.2&quot;, &quot;url&quot;: &quot;https://weather.com&quot; }] }, { &quot;title&quot;: &quot;Heading 2&quot;, &quot;url&quot;: &quot;https://www.microsoft.com&quot;, &quot;subItems&quot;: [{ &quot;title&quot;: &quot;Sub 2.1&quot;, &quot;url&quot;: &quot;https://cnn.com&quot; }, { &quot;title&quot;: &quot;Sub 2.2&quot;, &quot;url&quot;: &quot;https://weather.com&quot; }]}]&quot;}">
     </CustomAction>
 </Elements>

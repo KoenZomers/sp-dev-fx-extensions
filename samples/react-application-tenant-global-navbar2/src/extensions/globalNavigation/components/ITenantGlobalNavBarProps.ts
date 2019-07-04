@@ -1,5 +1,5 @@
-import * as SPTermStore from './../services/SPTermStoreService'; 
+import IMenuItem from './IMenuItem';
 
 export interface ITenantGlobalNavBarProps {
-    menuItems: SPTermStore.ISPTermObject[];
+    menuItems: IMenuItem[];
 }

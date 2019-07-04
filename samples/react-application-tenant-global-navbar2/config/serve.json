@@ -9,7 +9,7 @@
         "33ebce34-5b96-4e6e-b470-5eaea3b7e070": {
           "location": "ClientSideExtension.ApplicationCustomizer",
           "properties": {
-            "TopMenuTermSet": "TenantGlobalNavBar"
+            "TopMenuItems": "[{ \"title\": \"Heading 1\", \"url\": \"https://www.microsoft.com\", \"subItems\": [{ \"title\": \"Sub 1.1\", \"url\": \"https://cnn.com\" }, { \"title\": \"Sub 1.2\", \"url\": \"https://weather.com\" }] }, { \"title\": \"Heading 2\", \"url\": \"https://www.microsoft.com\", \"subItems\": [{ \"title\": \"Sub 2.1\", \"url\": \"https://cnn.com\" }, { \"title\": \"Sub 2.2\", \"url\": \"https://weather.com\" }]}]"
           }
         }
       }

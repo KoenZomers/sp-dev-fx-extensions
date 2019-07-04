@@ -15,11 +15,8 @@ import TenantGlobalNavBar from './components/TenantGlobalNavBar';
 import { ITenantGlobalNavBarProps } from './components/ITenantGlobalNavBarProps';
 import TenantGlobalFooterBar from './components/TenantGlobalFooterBar';
 import { ITenantGlobalFooterBarProps } from './components/ITenantGlobalFooterBarProps';
-import * as SPTermStore from './services/SPTermStoreService';
 
-import { taxonomy } from "@pnp/sp-taxonomy";
-import { PnPClientStorage } from "@pnp/common";
-
+import IMenuItem from './components/IMenuItem';
 import styles from './AppCustomizer.module.scss';
 import * as strings from 'GlobalNavigationApplicationCustomizerStrings';
 
@@ -32,8 +29,8 @@ const NAV_TERMS_KEY: string = 'global-navigation-terms';
  * You can define an interface to describe it.
  */
 export interface ITenantGlobalNavBarApplicationCustomizerProperties {
-  TopMenuTermSet?: string;
-  BottomMenuTermSet?: string;
+  TopMenuItems?: string;
+  BottomMenuItems?: string;
 }
 
 /** A Custom Action which can be run during execution of a Client Side Application */
@@ -42,43 +39,23 @@ export default class TenantGlobalNavBarApplicationCustomizer
 
   private _topPlaceholder: PlaceholderContent | undefined;
   private _bottomPlaceholder: PlaceholderContent | undefined;
-  private _topMenuItems: SPTermStore.ISPTermObject[];
-  private _bottomMenuItems: SPTermStore.ISPTermObject[];
-  private storage = new PnPClientStorage();
+  private _topMenuItems: IMenuItem[];
+  private _bottomMenuItems: IMenuItem[];
 
   @override
   public async onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
 
-    // Added to handle possible changes on the existence of placeholders
-    // this.context.placeholderProvider.changedEvent.add(this, this._renderPlaceHolders);
-
-    // Configure caching
-    taxonomy.setup({
-      defaultCachingStore: "session",
-      defaultCachingTimeoutSeconds: 900, //15min
-      globalCacheDisable: false // true to disable caching in case of debugging/testing
-    });
-
-    // Retrieve the menu items from taxonomy
-    let termStoreService: SPTermStore.SPTermStoreService = new SPTermStore.SPTermStoreService({
-      spHttpClient: this.context.spHttpClient,
-      siteAbsoluteUrl: this.context.pageContext.web.absoluteUrl,
-    });
-
-    if (this.properties.TopMenuTermSet != null) {
-      let cachedTerms = this.storage.session.get(NAV_TERMS_KEY);
-      if(cachedTerms != null){
-        this._topMenuItems = cachedTerms;
-      }
-      else {
-        this._topMenuItems = await termStoreService.getTermsFromTermSetAsync(this.properties.TopMenuTermSet, this.context.pageContext.web.language);
-        this.storage.session.put(NAV_TERMS_KEY,this._topMenuItems);
-      }
+    // Retrieve the menu items from the properties
+    if(this.properties.TopMenuItems !== undefined && this.properties.TopMenuItems !== null && this.properties.TopMenuItems != "") {
+      this._topMenuItems = JSON.parse(this.properties.TopMenuItems);
     }
-    if (this.properties.BottomMenuTermSet != null) {
-      this._bottomMenuItems = await termStoreService.getTermsFromTermSetAsync(this.properties.BottomMenuTermSet, this.context.pageContext.web.language);
+    if(this.properties.BottomMenuItems !== undefined && this.properties.BottomMenuItems !== null && this.properties.BottomMenuItems != "") {
+      this._bottomMenuItems = JSON.parse(this.properties.BottomMenuItems);
     }
+
+    console.log(`TopMenu: ${this._topMenuItems}`);
+    console.log(`BottomMenu: ${this._bottomMenuItems}`);
 
     // Call render method for generating the needed html elements
     this._renderPlaceHolders();
@@ -87,9 +64,6 @@ export default class TenantGlobalNavBarApplicationCustomizer
   }
 
   private _renderPlaceHolders(): void {
-
-    console.log('Available placeholders: ',
-      this.context.placeholderProvider.placeholderNames.map(name => PlaceholderName[name]).join(', '));
 
     // Handling the top placeholder
     if (!this._topPlaceholder) {

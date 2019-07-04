@@ -6,25 +6,22 @@ import { ITenantGlobalFooterBarState } from './ITenantGlobalFooterBarState';
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 import { IContextualMenuItem, ContextualMenuItemType } from 'office-ui-fabric-react/lib/ContextualMenu';
 
-import * as SPTermStore from './../services/SPTermStoreService'; 
+import IMenuItem from './IMenuItem';
 
 export default class TenantGlobalFooterBar extends React.Component<ITenantGlobalFooterBarProps, ITenantGlobalFooterBarState> {
 
-  private projectMenuItem(menuItem: SPTermStore.ISPTermObject, itemType: ContextualMenuItemType) : IContextualMenuItem {
-      return({
-        key: menuItem.identity,
-        name: menuItem.name,
-        itemType: itemType,
-        href: menuItem.terms.length == 0 ?
-            (menuItem.localCustomProperties["_Sys_Nav_SimpleLinkUrl"] != undefined ?
-                menuItem.localCustomProperties["_Sys_Nav_SimpleLinkUrl"]
-                : null)
-            : null,
-        subMenuProps: menuItem.terms.length > 0 ? 
-            { items : menuItem.terms.map((i) => { return(this.projectMenuItem(i, ContextualMenuItemType.Normal)); }) } 
-            : null,
-        isSubMenu: itemType != ContextualMenuItemType.Header,
-      });
+  private projectMenuItem(menuItem: IMenuItem, itemType: ContextualMenuItemType) : IContextualMenuItem {
+    return({
+      key: menuItem.title,
+      name: menuItem.title,
+      itemType: itemType,
+      iconProps: null,
+      href: menuItem.url,
+      subMenuProps: menuItem.subItems.length > 0 ? 
+          { items : menuItem.subItems.map((i) => { return(this.projectMenuItem(i, ContextualMenuItemType.Normal)); }) } 
+          : null,
+      isSubMenu: itemType != ContextualMenuItemType.Header,
+    });
   }
 
   public render(): React.ReactElement<ITenantGlobalFooterBarProps> {
