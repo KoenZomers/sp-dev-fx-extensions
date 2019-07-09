@@ -4,7 +4,7 @@
     "environment": "spo",
     "version": "1.8.2",
     "libraryName": "global-navigation",
-    "libraryId": "8bf24ac2-5764-471e-affd-904011fae4de",
+    "libraryId": "210ddf27-0263-4772-99a4-3c74d56eb720",
     "packageManager": "npm",
     "isDomainIsolated": false,
     "componentType": "extension",

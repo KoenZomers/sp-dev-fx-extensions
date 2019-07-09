@@ -1,8 +1,8 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "global-navigation-client-side-solution",
-    "id": "8bf24ac2-5764-471e-affd-904011fae4de",
+    "name": "global-navigation-property-bag",
+    "id": "210ddf27-0263-4772-99a4-3c74d56eb720",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
@@ -23,6 +23,6 @@
     ]
   },
   "paths": {
-    "zippedPackage": "solution/global-navigation.sppkg"
+    "zippedPackage": "solution/global-navigation-propertybag.sppkg"
   }
 }

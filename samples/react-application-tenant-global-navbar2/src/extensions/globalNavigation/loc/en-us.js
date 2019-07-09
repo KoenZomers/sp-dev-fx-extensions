@@ -1,5 +1,5 @@
 define([], function() {
   return {
-    "Title": "TenantGlobalNavBarApplicationCustomizer"
+    "Title": "Global Navigation"
   }
 });

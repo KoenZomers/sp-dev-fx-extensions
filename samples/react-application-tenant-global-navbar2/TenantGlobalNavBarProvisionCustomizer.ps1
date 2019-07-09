@@ -3,5 +3,5 @@
 Add-PnPCustomAction -Title "TenantGlobalNavBarCustomAction" `
 					-Name "TenantGlobalNavBarCustomAction" `
 					-Location "ClientSideExtension.ApplicationCustomizer" `
-					-ClientSideComponentId "33ebce34-5b96-4e6e-b470-5eaea3b7e070" `
+					-ClientSideComponentId "b5ee6a7d-ee49-4913-b217-021fb89650d8" `
 					-ClientSideComponentProperties "{""TopMenuTermSet"":""TenantGlobalNavBar"",""BottomMenuTermSet"":""TenantGlobalFooterBar""}"

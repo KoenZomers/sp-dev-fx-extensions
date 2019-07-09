@@ -29,8 +29,8 @@ const NAV_TERMS_KEY: string = 'global-navigation-terms';
  * You can define an interface to describe it.
  */
 export interface ITenantGlobalNavBarApplicationCustomizerProperties {
-  TopMenuItems?: string;
-  BottomMenuItems?: string;
+  TopMenuItems?: any[];
+  BottomMenuItems?: any[];
 }
 
 /** A Custom Action which can be run during execution of a Client Side Application */
@@ -46,16 +46,26 @@ export default class TenantGlobalNavBarApplicationCustomizer
   public async onInit(): Promise<void> {
     Log.info(LOG_SOURCE, `Initialized ${strings.Title}`);
 
-    // Retrieve the menu items from the properties
-    if(this.properties.TopMenuItems !== undefined && this.properties.TopMenuItems !== null && this.properties.TopMenuItems != "") {
-      this._topMenuItems = JSON.parse(this.properties.TopMenuItems);
-    }
-    if(this.properties.BottomMenuItems !== undefined && this.properties.BottomMenuItems !== null && this.properties.BottomMenuItems != "") {
-      this._bottomMenuItems = JSON.parse(this.properties.BottomMenuItems);
-    }
+    console.log(`Initialized ${strings.Title}`);
+    console.log(`Properties: ${JSON.stringify(this.properties)}`);    
 
-    console.log(`TopMenu: ${this._topMenuItems}`);
-    console.log(`BottomMenu: ${this._bottomMenuItems}`);
+    // Retrieve the menu items from the properties
+    if(this.properties.TopMenuItems !== undefined && this.properties.TopMenuItems !== null && this.properties.TopMenuItems.length > 0) {
+      this._topMenuItems = this.properties.TopMenuItems;
+      console.log(`TopMenu: ${JSON.stringify(this._topMenuItems)}`);
+    }
+    else
+    {
+      console.log("TopMenu will not be rendered");
+    }
+    if(this.properties.BottomMenuItems !== undefined && this.properties.BottomMenuItems !== null && this.properties.BottomMenuItems.length > 0) {
+      this._bottomMenuItems = this.properties.BottomMenuItems;
+      console.log(`BottomMenu: ${JSON.stringify(this._bottomMenuItems)}`);
+    } 
+    else
+    {
+      console.log("BottomMenu will not be rendered");
+    }
 
     // Call render method for generating the needed html elements
     this._renderPlaceHolders();
